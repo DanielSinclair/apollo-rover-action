@@ -1,0 +1,22 @@
+name: "fetch"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: rover fetch
+      id: fetch
+      uses: ./
+      with:
+        graph: rover-actions
+        variant: current
+        federated: true
+        subgraph: products
+      env:
+        APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+    - run: cat ${{ steps.fetch.outputs.path }}

@@ -1,13 +1,28 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'Apollo Rover Fetch Action'
+description: 'fetch the current schema from Apollo Studio'
+branding:
+  icon: 'arrow-down'  
+  color: 'blue'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  graph:
+    description: '@graph_id portion of the graph ref'
     required: true
-    default: '1000'
+  variant:
+    description: '@variant_name portion of the graph ref'
+    required: false
+    default: 'current'
+  federated:
+    description: 'true when interacting directly with a federated subgraph'
+    required: false
+    default: false
+  subgraph:
+    description: 'subgraph name'
+    required: false
 outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  schema:
+    description: 'base64 encoded fetched SDL'
+  path:
+    description: 'path of the .graphql file'
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: 'docker'
+  image: 'Dockerfile'
