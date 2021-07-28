@@ -26,7 +26,7 @@ jobs:
       with:
         graph: APOLLO_GRAPH_ID
         federated: true
-        subgraph: accounts
+        subgraph: products
       env:
         APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
 ```
