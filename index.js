@@ -36,7 +36,7 @@ const getInput = () => {
   return { graph, variant, federated, subgraph, path }
 }
 
-const setOutput = (path, schema) => {
+const setOutput = (schema) => {
   const encoded = Buffer.from(schema).toString('base64')
   core.setOutput('schema', encoded)
 }
