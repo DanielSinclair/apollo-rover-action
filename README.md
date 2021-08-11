@@ -1,6 +1,6 @@
 # Apollo Rover Fetch Action
 
-A GitHub Action to fetch a managed schema from Apollo Studio using the Apollo [Rover CLI](https://www.apollographql.com/docs/rover/). Prints to log and exports as base64 encoded output `schema` and saves the file to `path`
+A GitHub Action to fetch a managed schema from Apollo Studio using the Apollo [Rover CLI](https://www.apollographql.com/docs/rover/). Prints to log and exports as base64 encoded output `schema` and saves the file to an artifact `subgraph.graphql`
 
 Works in tandem with:
 - [rover-introspect](https://github.com/DanielSinclair/rover-introspect-action)
