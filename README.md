@@ -2,6 +2,12 @@
 
 A GitHub Action to fetch a managed schema from Apollo Studio using the Apollo [Rover CLI](https://www.apollographql.com/docs/rover/). Prints to log and exports as base64 encoded output `schema` and saves the file to `path`
 
+Works in tandem with:
+[rover-fetch](https://github.com/DanielSinclair/rover-fetch-action)
+[rover-introspect](https://github.com/DanielSinclair/rover-introspect-action)
+[rover-publish](https://github.com/DanielSinclair/rover-publish-action)
+
+
 ## inputs
 | name       | default | required               |
 | :--------- | :------ | :--------------------- |
