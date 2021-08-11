@@ -1,7 +1,21 @@
 
 const core = require('@actions/core')
 const exec = require('@actions/exec')
+const artifact = require('@actions/artifact')
 const fs = require('fs')
+const path = require('path')
+
+const uploadArtifact = async (name, path) => {
+  const client = artifact.create()
+  const options = { continueOnError: false }
+  return await client.uploadArtifact(name, [path], __dirname, options)
+}
+
+const saveFile = (name, schema) => {
+  const file = path.join(__dirname, `/${name}`)
+  fs.writeFileSync(file, schema)
+  return file
+}
 
 const rover = async (args = []) => {
   let schema = ""
@@ -23,8 +37,6 @@ const getInput = () => {
 }
 
 const setOutput = (path, schema) => {
-  fs.writeFileSync(path, schema)
-  core.setOutput('path', path)
   const encoded = Buffer.from(schema).toString('base64')
   core.setOutput('schema', encoded)
 }
@@ -40,7 +52,10 @@ async function run() {
       ...name
     ]
     const schema = await rover(args)
-    setOutput(path, schema)
+    const filename = federated ? `${subgraph}.graphql` : `graph.graphql`
+    const file = saveFile(filename, schema)
+    await uploadArtifact(filename, file)
+    setOutput(schema)
   } catch (error) {
     console.error(error)
     core.setFailed(error.message)
