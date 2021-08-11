@@ -3,8 +3,8 @@
 A GitHub Action to fetch a managed schema from Apollo Studio using the Apollo [Rover CLI](https://www.apollographql.com/docs/rover/). Prints to log and exports as base64 encoded output `schema` and saves the file to an artifact `subgraph.graphql`
 
 Works in tandem with:
-- [rover-introspect](https://github.com/DanielSinclair/rover-introspect-action)
-- [rover-publish](https://github.com/DanielSinclair/rover-publish-action)
+- [rover-introspect](https://github.com/DanielSinclair/rover-introspect)
+- [rover-publish](https://github.com/DanielSinclair/rover-publish)
 
 
 ## inputs
@@ -27,7 +27,7 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-    - uses: danielsinclair/rover-fetch-action@v1
+    - uses: danielsinclair/rover-fetch@v1
       with:
         graph: APOLLO_GRAPH_ID
         federated: true
